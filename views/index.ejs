@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-zinc-900 text-white min-h-screen p-8">
+    <div class="w-full max-w-6xl mx-auto space-y-10">
+      <!-- Form Section -->
+      <div class="max-w-4xl mx-auto space-y-4">
+        <form action="/create" method="post">
+          <input
+            type="text"
+            name="title"
+            placeholder="Title goes here.."
+            class="w-full p-3 rounded-md bg-zinc-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <textarea
+            name="details"
+            placeholder="Write your task details here..."
+            class="w-full p-3 rounded-md bg-zinc-800 text-white placeholder-gray-400 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 mt-4"
+          ></textarea>
+          <button
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-md font-medium mt-4"
+          >
+            Create Task
+          </button>
+        </form>
+      </div>
+
+      <!-- Tasks Section -->
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
+        <% if (files && files.length > 0) { %>
+          <% files.forEach(function(file) { %>
+            <div class="bg-zinc-800 p-4 rounded-md">
+              <h3 class="text-lg font-semibold"><%= file %></h3>
+              <a href="/files/<%= file %>" class="text-blue-400 hover:underline mt-2 block">Read More.</a>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div class="bg-zinc-800 p-4 rounded-md col-span-full text-center">
+            <p class="text-gray-400">No tasks yet. Create one above!</p>
+          </div>
+        <% } %> 
+         
+        
+      </div>
+    </div>
+
+    <script src="/javascripts/script.js"></script>
+  </body>
+</html>
